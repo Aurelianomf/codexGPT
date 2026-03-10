@@ -28,11 +28,11 @@ function App() {
   const ranking = useMemo(() => [...(state?.players ?? [])].sort((a, b) => b.position - a.position || b.score - a.score), [state])
 
   const resetDraft = (totalPlayers: number) => {
-    const defaults = Array.from({ length: totalPlayers }, (_, i) => ({
+    const defaults: NewPlayerInput[] = Array.from({ length: totalPlayers }, (_, i): NewPlayerInput => ({
       name: `Jogador ${i + 1}`,
       characterId: characters[i % characters.length].id,
       color: ['#ef4444', '#3b82f6', '#22c55e', '#f97316'][i % 4],
-      type: i < 2 ? 'human' : 'bot' as const,
+      type: i < 2 ? 'human' : 'bot',
     }))
     setDraftPlayers(defaults)
   }
