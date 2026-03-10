@@ -1,7 +1,7 @@
 import { buildBoard } from '../data/board'
 import { cardDeck } from '../data/cards'
 import { characters } from '../data/characters'
-import type { CardDefinition, GameMode, GameSettings, GameState, Player, Tile } from '../types'
+import type { CardDefinition, GameSettings, GameState, Player, Tile } from '../types'
 import { byPositionDesc, clamp, drawCard, findNextBonus, shuffle } from './utils'
 
 const botDelayMs = 1200
