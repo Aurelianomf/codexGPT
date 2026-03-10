@@ -4,6 +4,7 @@ import { Dice } from './components/Dice'
 import { Modal } from './components/Modal'
 import { PlayerCard } from './components/PlayerCard'
 import { TutorialPanel } from './components/TutorialPanel'
+import { CardPopup } from './components/CardPopup'
 import { characters } from './data/characters'
 import { createGame, getBotDelay, isBotTurn, type NewPlayerInput, playTurn } from './engine/gameEngine'
 import { usePersistentState } from './hooks/usePersistentState'
@@ -80,7 +81,7 @@ function App() {
             <button onClick={() => setTutorialOpen(true)} className="rounded-xl bg-emerald-600 px-5 py-3 font-bold text-white">Tutorial</button>
           </div>
         </div>
-        <Modal open={tutorialOpen} title="Como Jogar" onClose={() => setTutorialOpen(false)}><TutorialPanel /></Modal>
+        <Modal open={tutorialOpen} title="Como Jogar" onClose={() => setTutorialOpen(false)}><TutorialPanel theme={settings.theme} /></Modal>
       </main>
     )
   }
@@ -194,10 +195,10 @@ function App() {
         </aside>
       </div>
 
-      <Modal open={tutorialOpen} title="Tutorial" onClose={() => setTutorialOpen(false)}><TutorialPanel /></Modal>
+      <Modal open={tutorialOpen} title="Tutorial" onClose={() => setTutorialOpen(false)}><TutorialPanel theme={settings.theme} /></Modal>
       <Modal open={Boolean(state.modalMessage)} title="Efeito da Casa" onClose={() => setState({ ...state, modalMessage: undefined })}>{state.modalMessage}</Modal>
       <Modal open={cardOpen && Boolean(state.currentCard)} title={`Carta: ${state.currentCard?.title ?? ''}`} onClose={() => { setCardOpen(false); setState({ ...state, currentCard: undefined }) }}>
-        <p className="text-base font-semibold">{state.currentCard?.text}</p>
+        <CardPopup card={state.currentCard} theme={settings.theme} />
       </Modal>
     </main>
   )
